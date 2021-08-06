@@ -7,12 +7,7 @@ import time
 import urllib
 import zipfile
 
-from urlparse import urlsplit
-
-try:
-    set
-except NameError:
-    from sets import Set as set  # For Python 2.3
+from six.moves.urllib.parse import urlsplit
 
 from django.core.management.base import BaseCommand
 from django.db import IntegrityError
@@ -26,9 +21,9 @@ log_handler = logging.StreamHandler()
 log_handler.setFormatter(logging.Formatter("%(levelname)s: %(message)s"))
 
 lang_valid_chars = {
-    'ru': re.compile(ur'^[\u0400-\u04ff-]+$'),
-    'uk': re.compile(ur'^[\u0400-\u04ff-]+$'),
-    'by': re.compile(ur'^[\u0400-\u04ff-]+$'),
+    'ru': re.compile(r'^[\u0400-\u04ff-]+$'),
+    'uk': re.compile(r'^[\u0400-\u04ff-]+$'),
+    'by': re.compile(r'^[\u0400-\u04ff-]+$'),
 }
 
 
@@ -298,7 +293,7 @@ It is possible to force the import of files which weren't downloaded using the
                     sid = transaction.savepoint()
                     country.save()
                     transaction.savepoint_commit(sid)
-                except IntegrityError, e:
+                except IntegrityError as e:
                     log.warning("Country IntegrityError: %s", str(e))
                     transaction.savepoint_rollback(sid)
 
@@ -362,7 +357,7 @@ It is possible to force the import of files which weren't downloaded using the
                     sid = transaction.savepoint()
                     obj.save()
                     transaction.savepoint_commit(sid)
-                except IntegrityError, e:
+                except IntegrityError as e:
                     log.warning("AdminDivision IntegrityError: %s: country=%s, "
                                 "admin1=%s, admin2=%s, admin3=%s, admin4=%s",
                                 str(e), repr(obj.country.name_ascii),
@@ -433,7 +428,7 @@ It is possible to force the import of files which weren't downloaded using the
                     sid = transaction.savepoint()
                     obj.save()
                     transaction.savepoint_commit(sid)
-                except IntegrityError, e:
+                except IntegrityError as e:
                     log.warning("AdminDivision IntegrityError: %s: country=%s, "
                                 "admin1=%s, admin2=%s, admin3=%s, admin4=%s",
                                 str(e), repr(obj.country.name_ascii),
@@ -521,7 +516,7 @@ It is possible to force the import of files which weren't downloaded using the
                     sid = transaction.savepoint()
                     obj.save()
                     transaction.savepoint_commit(sid)
-                except IntegrityError, e:
+                except IntegrityError as e:
                     log.warning("City IntegrityError: %s", str(e))
                     transaction.savepoint_rollback(sid)
                     continue

@@ -1,6 +1,6 @@
-Metadata-Version: 1.0
+Metadata-Version: 1.0-myvr-1
 Name: django-cities-tiny
-Version: 1.0
+Version: 1.0-myvr-1
 Summary: Another simple alternative to django-cities
 Home-page: http://code.google.com/p/django-cities-tiny/
 Author: Konstantin Korikov (original by James Pic)
