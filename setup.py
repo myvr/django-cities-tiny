@@ -11,7 +11,7 @@ def read(fname):
 
 setup(
     name='django-cities-tiny',
-    version='1.0',
+    version='1.1',
     description='Another simple alternative to django-cities',
     author='Konstantin Korikov (original by James Pic)',
     author_email='lostclus@gmail.com',
